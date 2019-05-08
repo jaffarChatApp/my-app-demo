@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Http } from '@angular/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'my-app-demo';
+    
+    constructor( 
+        public router: Router,
+        public http: Http){}
+    
+    
+    /*Page Navigation*/
+    navigateThis(event, page){
+        this.router.navigate([page]);
+        //this.router.navigate(['dashboard']);
+    }
+         
+         
 }

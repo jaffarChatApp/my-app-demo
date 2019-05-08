@@ -1,0 +1,39 @@
+<!--Header-->
+<mat-toolbar color="primary" class="example-header pageHeader">
+    <button mat-icon-button (click)="sidenav.toggle()" #tooltip="matTooltip" matTooltip="Menu" matTooltipPosition="below">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span [innerHTML]="title"></span>
+    <span class="example-fill-remaining-space"></span>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="appComponent.openModal($event, 'Change Password', changePassword)">
+            <mat-icon>build</mat-icon>
+            <span>Change Password</span>
+        </button>
+        <button mat-menu-item (click)="appComponent.navigateThis($event, 'login')">
+            <mat-icon>power_settings_new</mat-icon>
+            <span>Logout</span>
+        </button>
+    </mat-menu>
+</mat-toolbar>
+
+<!--Side Menu Bar-->
+<mat-sidenav-container class="example-container" (backdropClick)="sidenav.toggle()">
+    <mat-sidenav #sidenav mode="over" opened class="example-sidenav" [(opened)]="opened">
+        <mat-list role="list">
+            <mat-nav-list>
+                <mat-list-item *ngFor="let menu of appComponent.menuLIst" (click)="appComponent.navigateThis($event, menu.novTo); sidenav.toggle()" [ngClass]="{'navActive': menu.novTo == appComponent.activeTab}">
+                    <mat-icon [innerHTML]="menu.icon"> </mat-icon>
+                    <div [innerHTML]="menu.name"></div>
+                </mat-list-item>
+            </mat-nav-list>
+        </mat-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <!--Page Render Here-->
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

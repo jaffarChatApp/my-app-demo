@@ -1,0 +1,25 @@
+<!--Login Form-->
+<div class="loginComponent">
+    <div class="loginForm boxShadow">
+        <h2>Login</h2>
+        <form #userForm="ngForm" (ngSubmit)="userLogin($event)">
+            <div class="formInput">
+                <mat-form-field appearance="outline">
+                    <mat-label>Username</mat-label>
+                    <input matInput type="text" placeholder="Username" name="username" [(ngModel)]="loginData.username">
+                    <mat-icon matSuffix>person</mat-icon>
+                </mat-form-field>
+            </div>
+            <div class="formInput">
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" placeholder="Password" name="password" [(ngModel)]="loginData.password">
+                    <mat-icon matSuffix>lock</mat-icon>
+                </mat-form-field>
+            </div>
+            <div class="formSubmit">
+                <button type="submit" mat-raised-button color="primary">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
